@@ -7,7 +7,7 @@ def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_
         f.write(audio_file.read())
 
     # Load the audio file
-    audio = AudioSegment.from_file("temp_audio_file.mp3")
+    audio = AudioSegment.from_file("temp_audio_file.mp3", format="mp3")
 
     # Apply pitch modulation (in semitones, positive for increase, negative for decrease)
     audio = audio + pitch_modulation
@@ -15,7 +15,7 @@ def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_
     # Apply speed modulation (1.0 is normal speed, <1.0 for slower, >1.0 for faster)
     audio = audio.speedup(playback_speed=speed_modulation)
 
-    # Save the modified audio file
+    # Export the modified audio to the specified output file
     audio.export(output_file, format="mp3")
 
     # Remove the temporary file
