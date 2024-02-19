@@ -1,10 +1,13 @@
 from pydub import AudioSegment
 import streamlit as st
 
-# Function to add modulations to the translated audio
 def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_modulation=1.0):
+    # Save the uploaded file
+    with open("temp_audio_file.mp3", "wb") as f:
+        f.write(audio_file.read())
+
     # Load the audio file
-    audio = AudioSegment.from_file(audio_file)
+    audio = AudioSegment.from_file("temp_audio_file.mp3")
 
     # Apply pitch modulation (in semitones, positive for increase, negative for decrease)
     audio = audio + pitch_modulation
@@ -14,6 +17,10 @@ def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_
 
     # Save the modified audio file
     audio.export(output_file, format="mp3")
+
+    # Remove the temporary file
+    os.remove("temp_audio_file.mp3")
+
 
 def main():
     st.title("Audio Modulation")
