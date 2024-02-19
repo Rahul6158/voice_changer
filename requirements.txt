@@ -1,3 +1,4 @@
+ffmpeg
 pydub
 docx2txt
 docx
