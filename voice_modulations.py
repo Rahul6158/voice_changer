@@ -1,14 +1,17 @@
+import streamlit as st
 from pydub import AudioSegment
 from pydub.playback import play
 from pydub.generators import Sine
+import os
 
+# Function to add pitch and speed modulations to audio
 def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_modulation=1.0):
     # Save the uploaded file
     with open("temp_audio_file.mp3", "wb") as f:
         f.write(audio_file.read())
 
     # Load the audio file
-    audio = AudioSegment.from_file("temp_audio_file.mp3")
+    audio = AudioSegment.from_file("temp_audio_file.mp3", format="mp3")
 
     # Apply pitch modulation (in semitones, positive for increase, negative for decrease)
     if pitch_modulation != 0:
@@ -24,3 +27,23 @@ def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_
 
     # Remove the temporary file
     os.remove("temp_audio_file.mp3")
+
+# Streamlit code
+def main():
+    st.title("Audio Modulation")
+
+    uploaded_file = st.file_uploader("Upload an audio file", type=["mp3"])
+
+    if uploaded_file is not None:
+        pitch_modulation = st.slider("Pitch modulation (semitones)", -12, 12, 0)
+        speed_modulation = st.slider("Speed modulation", 0.5, 2.0, 1.0, 0.1)
+
+        if st.button("Apply Modulations"):
+            output_file = "modulated_audio.mp3"
+            add_modulations_to_audio(uploaded_file, output_file, pitch_modulation, speed_modulation)
+
+            st.success("Modulations applied successfully!")
+            st.audio(output_file, format="audio/mp3")
+
+if __name__ == "__main__":
+    main()
