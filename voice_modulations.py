@@ -1,7 +1,5 @@
 import streamlit as st
 from pydub import AudioSegment
-from pydub.playback import play
-from pydub.generators import Sine
 import os
 
 # Function to add pitch and speed modulations to audio
