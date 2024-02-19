@@ -1,6 +1,13 @@
 import streamlit as st
 from pydub import AudioSegment
 import os
+from pydub import AudioSegment
+from pydub.utils import which
+
+# Set the paths to ffmpeg and ffprobe explicitly
+AudioSegment.converter = which("ffmpeg")
+AudioSegment.ffmpeg = which("ffmpeg")
+AudioSegment.ffprobe = which("ffprobe")
 
 # Function to add pitch and speed modulations to audio
 def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_modulation=1.0):
