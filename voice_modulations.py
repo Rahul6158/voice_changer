@@ -4,12 +4,8 @@ import os
 
 # Function to add pitch and speed modulations to audio
 def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_modulation=1.0):
-    # Save the uploaded file
-    with open("temp_audio_file.mp3", "wb") as f:
-        f.write(audio_file.read())
-
     # Load the audio file
-    audio = AudioSegment.from_file("temp_audio_file.mp3", format="mp3")
+    audio = AudioSegment.from_file(audio_file, format="mp3")
 
     # Apply pitch modulation (in semitones, positive for increase, negative for decrease)
     if pitch_modulation != 0:
@@ -22,9 +18,6 @@ def add_modulations_to_audio(audio_file, output_file, pitch_modulation=0, speed_
 
     # Export the modified audio to the specified output file
     audio.export(output_file, format="mp3")
-
-    # Remove the temporary file
-    os.remove("temp_audio_file.mp3")
 
 # Streamlit code
 def main():
