@@ -4,8 +4,8 @@ from pydub import AudioSegment
 from pydub.utils import get_encoder_name
 
 # Set the path to ffmpeg and ffprobe executable files
-AudioSegment.ffmpeg = "/path/to/ffmpeg"
-AudioSegment.ffprobe = "/path/to/ffprobe"
+AudioSegment.ffmpeg = "/fftools/ffmpeg.h"
+AudioSegment.ffprobe = "fftools/ffprobe.c"
 
 # Streamlit app title
 st.title("Audio Player")
