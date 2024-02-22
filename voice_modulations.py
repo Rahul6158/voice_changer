@@ -19,7 +19,7 @@ def main():
     st.title("Audio Modulation")
 
     # Display uploaded file
-    uploaded_file = st.file_uploader("Upload audio file", type=["mp3"])
+    audio_file = st.file_uploader("Upload audio file", type=["mp3"])
 
     if uploaded_file is not None:
         # Display sliders for pitch and speed modulation
