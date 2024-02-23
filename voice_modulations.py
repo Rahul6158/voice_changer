@@ -2,6 +2,9 @@ import streamlit as st
 from googletrans import Translator
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
 
 # Function to remove stopwords from text
 def remove_stopwords(text):
