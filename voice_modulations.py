@@ -23,7 +23,7 @@ st.title('Text Processing and Translation App')
 input_text = st.text_area('Enter your text here:')
 
 # Select target language
-target_language = st.selectbox('Select target language:', ['fr', 'es', 'de', 'it'])
+target_language = st.selectbox('Select target language:', ['fr', 'es', 'de', 'it', 'ja', 'ko', 'zh-CN'])
 
 # Button to process and translate text
 if st.button('Process and Translate'):
